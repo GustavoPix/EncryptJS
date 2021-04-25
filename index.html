@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cripto</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="main">
+        <input placeholder="Input" v-model="input" type="password">
+        <input placeholder="Main key" v-model="key" type="password">
+        <button @click="encrypt()">Encrypt</button>
+        <button @click="decrypt()">Decrypt</button>
+        <p>Result: <span>{{result}}</span></p>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
