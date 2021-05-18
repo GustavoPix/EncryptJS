@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: $color_backgound;
+    
+    .main{
+        border: 1px solid $color_supBackground;
+        width: 50%;
+        max-width: 550px;
+    }
+}

@@ -1,0 +1,16 @@
+@import 'reset';
+@import 'colors';
+@import 'assets';
+@import 'body';
+@import 'abas';
+@import 'content';
+
+.displayNone{
+    display: none;
+    
+}
+
+*{
+    font-family: $font2;
+    font-size: 14px;
+}

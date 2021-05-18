@@ -1,0 +1,15 @@
+.abas{
+    display: flex;
+
+    &_item{
+        padding: 20px;
+        color: $color_texto;
+        border: 1px solid $color_supBackground;
+        width: 33.33%;
+        cursor: pointer;
+
+        &_active{
+            background: $color_supBackground;
+        }
+    }
+}

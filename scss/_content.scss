@@ -1,0 +1,40 @@
+.content{
+    padding: 40px;
+    background: $color_supBackground;
+
+    &_inputs{
+        margin-bottom: 60px;
+        label{
+            display: block;
+            color: $color_texto;
+            margin-bottom: 10px;
+        }
+        input{
+            display: block;
+            width: 100%;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            margin-bottom: 40px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid $color_backgound;
+            color: $color_texto;
+            &:focus-visible{
+                outline: none;
+            }
+        }
+    }
+
+    &_results{
+        display: flex;
+        &_label{
+            margin-right: 10px;
+            color: $color_texto;
+        }
+        &_success{
+            color: $color_success;
+        }
+    }
+    
+}
+

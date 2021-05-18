@@ -1,0 +1,31 @@
+.main_button{
+    background: none;
+    border: 1px solid $color_destaque;
+    color: $color_destaque;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover{
+        background: $color_destaque;
+        color: $color_backgound;
+    }
+}
+
+.text_main{
+    font-family: $font2;
+    font-size: 14px;
+}
+.text_title{
+    font-family: $font2;
+    font-size: 16px;
+    font-weight: 600;;
+}
+.text_result{
+    font-family: $font1;
+    font-size: 14px;
+}
+.text_input{
+    font-family: $font1;
+    font-size: 14px;
+    font-weight: 600;
+}
