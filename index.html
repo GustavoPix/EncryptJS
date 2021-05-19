@@ -14,45 +14,55 @@
 <body>
     <div id="main" class="main">
         <ul class="abas">
-            <li class="abas_item text_title abas_item_active">Descriptografar</li>
-            <li class="abas_item text_title">Criptografar</li>
-            <li class="abas_item text_title">Gerador de senhas</li>
+            <li 
+                @click="aba=0"
+                class="abas_item text_title" 
+                :class="{abas_item_active : aba == 0}">Descriptografar</li>
+            <li 
+                @click="aba=1"
+                class="abas_item text_title"
+                :class="{abas_item_active : aba == 1}">Criptografar</li>
+            <li 
+                @click="aba=2"
+                class="abas_item text_title"
+                :class="{abas_item_active : aba == 2}">Gerador de senhas</li>
         </ul>
-        <div class="content displayNone" >
+        <div v-if="aba==0" class="content" >
             <div class="content_inputs">
                 <label class="text_title">Hash</label>
-                <input class="text_input" type="text">
+                <input class="text_input" type="text" v-model="hash">
                 <label class="text_title">Senha Mestre</label>
-                <input class="text_input" type="password">
-                <button class="main_button">Descriptografar</button>
+                <input class="text_input" type="password" v-model="key">
+                <button class="main_button" @click="decrypt()">Descriptografar</button>
             </div>
             <div class="content_results">
                 <p class="content_results_label text_main">Senha:</p>
-                <p class="content_results_success text_result">MinhaSenha123</p>
+                <p class="content_results_success text_result">{{resultHash}}</p>
             </div>
         </div>
-        <div class="content displayNone">
+        <div v-if="aba==1" class="content">
             <div class="content_inputs">
                 <label class="text_title">Senha</label>
-                <input class="text_input" type="password">
+                <input class="text_input" type="password" v-model="pass">
                 <label class="text_title">Senha Mestre</label>
-                <input class="text_input" type="password">
-                <button class="main_button">Criptografar</button>
+                <input class="text_input" type="password" v-model="key">
+                <button class="main_button" @click="encrypt()">Criptografar</button>
             </div>
             <div class="content_results">
                 <p class="content_results_label text_main">Hash:</p>
-                <p class="content_results_success text_result">bewfiuiufiufiuwfiufeewiufewiu</p>
+                <p class="content_results_success text_result">{{resultPass}}</p>
             </div>
         </div>
-        <div class="content ">
+        <div v-if="aba==2" class="content">
             <div class="content_inputs">
-                <button class="main_button">Criar senha Aleatória</button>
+                <button class="main_button" @click="generatePass()">Criar senha Aleatória</button>
             </div>
             <div class="content_results">
-                <p class="content_results_success text_result">fbweuibfweui</p>
+                <p class="content_results_label text_main">Senha:</p>
+                <p class="content_results_success text_result">{{newPass}}</p>
             </div>
         </div>
     </div>
-    
+    <script src="js/main.js"></script>
 </body>
 </html>

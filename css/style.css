@@ -122,6 +122,9 @@ body .main {
 .content {
   padding: 40px;
   background: #30475e;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 386px;
 }
 
 .content_inputs {
@@ -166,8 +169,8 @@ body .main {
   color: #65f27d;
 }
 
-.displayNone {
-  display: none;
+.marginBotton {
+  margin-bottom: 20px;
 }
 
 * {

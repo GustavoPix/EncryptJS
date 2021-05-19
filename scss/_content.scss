@@ -1,6 +1,8 @@
 .content{
     padding: 40px;
     background: $color_supBackground;
+    box-sizing: border-box;
+    min-height: 386px;
 
     &_inputs{
         margin-bottom: 60px;
