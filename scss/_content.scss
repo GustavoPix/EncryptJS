@@ -6,6 +6,7 @@
 
     &_inputs{
         margin-bottom: 60px;
+        position: relative;
         label{
             display: block;
             color: $color_texto;
@@ -29,12 +30,18 @@
 
     &_results{
         display: flex;
+        position: relative;
         &_label{
             margin-right: 10px;
             color: $color_texto;
         }
         &_success{
             color: $color_success;
+        }
+        &_error{
+            color: $color_error;
+            position: absolute;
+            margin-top: -40px;
         }
     }
     

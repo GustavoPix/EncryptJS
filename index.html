@@ -57,6 +57,7 @@
             <div class="content_inputs">
                 <label class="text_title">Senha Mestre</label>
                 <input class="text_input" type="password" v-model="key">
+                <p v-if="errors.gerador.passMaster != ''" class="content_results_error text_result">Erro: {{errors.gerador.passMaster}}</p>
                 <button class="main_button" @click="generatePass()">Criar senha Aleatória</button>
             </div>
             <div class="content_results marginBotton">

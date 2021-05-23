@@ -129,6 +129,7 @@ body .main {
 
 .content_inputs {
   margin-bottom: 60px;
+  position: relative;
 }
 
 .content_inputs label {
@@ -158,6 +159,7 @@ body .main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 .content_results_label {
@@ -167,6 +169,12 @@ body .main {
 
 .content_results_success {
   color: #65f27d;
+}
+
+.content_results_error {
+  color: #f26565;
+  position: absolute;
+  margin-top: -40px;
 }
 
 .marginBotton {
