@@ -46,7 +46,7 @@
                 <input class="text_input" type="password" v-model="pass">
                 <label class="text_title">Senha Mestre</label>
                 <input class="text_input" type="password" v-model="key">
-                <button class="main_button" @click="encrypt()">Criptografar</button>
+                <button class="main_button" @click="buttonEncrypt()">Criptografar</button>
             </div>
             <div class="content_results">
                 <p class="content_results_label text_main">Hash:</p>
@@ -55,11 +55,17 @@
         </div>
         <div v-if="aba==2" class="content">
             <div class="content_inputs">
+                <label class="text_title">Senha Mestre</label>
+                <input class="text_input" type="password" v-model="key">
                 <button class="main_button" @click="generatePass()">Criar senha Aleatória</button>
             </div>
-            <div class="content_results">
+            <div class="content_results marginBotton">
                 <p class="content_results_label text_main">Senha:</p>
                 <p class="content_results_success text_result">{{newPass}}</p>
+            </div>
+            <div class="content_results">
+                <p class="content_results_label text_main">Hash:</p>
+                <p class="content_results_success text_result">{{newHash}}</p>
             </div>
         </div>
     </div>

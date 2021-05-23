@@ -8,12 +8,13 @@ const vm_main = new Vue({
         resultHash:"",
         newPass:"",
         newHash:"",
-        aba:0
+        aba:2
     },
     methods: {
-        encrypt(){
-            let hash = CryptoJS.AES.encrypt(this.pass,this.key);
-            this.resultPass = hash.toString();
+        encrypt(pass,key){
+            let hash = CryptoJS.AES.encrypt(pass,key);
+            
+            return hash.toString();
         },
         decrypt(){
             let dec = CryptoJS.AES.decrypt(this.hash,this.key);
@@ -21,13 +22,20 @@ const vm_main = new Vue({
         },
         generatePass()
         {
-            let charset="qwertyuiopasdfghjklçzxcvbnm1234567890!@#$%¨&*()-_=+;?";
+            let charset="qwertyuiopasdfghjklçzxcvbnm1234567890!@#$%&*()-_=+;?";
             let newPass = '';
             for(let i = 0; i < 16; i++)
             {
-                newPass+=this.getRandom(charset);
+                var upCase = Math.floor(Math.random()*2) == 1;
+                var newChar = this.getRandom(charset)
+                newPass+= upCase ? newChar.toUpperCase() : newChar;
             }
             this.newPass = newPass;
+            this.newHash = this.encrypt(newPass,this.key);
+        },
+        buttonEncrypt()
+        {
+            this.resultPass = this.encrypt(this.pass,this.key);
         },
         getRandom(string)
         {
