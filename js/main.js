@@ -31,44 +31,87 @@ const vm_main = new Vue({
             let dec = CryptoJS.AES.decrypt(this.hash,this.key);
             this.resultHash = dec.toString(CryptoJS.enc.Utf8);
         },
-        generatePass()
+        buttonGeneratePass()
         {
-            let validacao = this.verifyPassMaster();
+            let validacao = this.verifyPass(this.key);
             if(validacao.success)
             {
                 this.errors.gerador.passMaster = "";
-                let charset="qwertyuiopasdfghjklçzxcvbnm1234567890!@#$%&*()-_=+;?";
-                let newPass = '';
-                for(let i = 0; i < 16; i++)
-                {
-                    var upCase = Math.floor(Math.random()*2) == 1;
-                    var newChar = this.getRandom(charset)
-                    newPass+= upCase ? newChar.toUpperCase() : newChar;
-                }
-                this.newPass = newPass;
-                this.newHash = this.encrypt(newPass,this.key);
+                this.newPass = this.GeneratePass(16);
+                this.newHash = this.encrypt(this.newPass,this.key);
             }
             else
             {
                 this.errors.gerador.passMaster = validacao.error;
             }
         },
-        verifyPassMaster()
+        GeneratePass(caracteres)
         {
-            if(this.key.trim() == "")
+            let charset="qwertyuiopasdfghjklçzxcvbnm1234567890!@#$%&*()-_=+;?";
+            let newPass = '';
+            for(let i = 0; i < caracteres; i++)
+            {
+                var upCase = Math.floor(Math.random()*2) == 1;
+                var newChar = this.getRandom(charset)
+                newPass+= upCase ? newChar.toUpperCase() : newChar;
+            }
+            if(this.verifyPass(newPass).success)
+            {
+                return newPass;
+            }
+            else
+            {
+                return this.GeneratePass(caracteres);
+            }
+        },
+        verifyPass(pass)
+        {
+            if(pass.trim() == "")
             {
                 return {
                     success: false,
                     nivelErro: 2,
-                    error: "Preencha a senha mestre"
+                    error: "A senha nâo pode ser nula"
                 }
             }
-            else if(this.key.trim().length < 6)
+            else if(pass.trim().length < 6)
             {
                 return {
                     success: false,
                     nivelErro: 2,
-                    error: "A senha mestre deve ter pelo menos 6 caracteres"
+                    error: "A senha deve conter pelo menos 6 caracteres"
+                }
+            }
+            else if(!pass.match("[a-z]"))
+            {
+                return {
+                    success: false,
+                    nivelErro: 2,
+                    error: "A senha deve conter pelo menos 1 caracter minúsculo"
+                }
+            }
+            else if(!pass.match("[A-Z]"))
+            {
+                return {
+                    success: false,
+                    nivelErro: 2,
+                    error: "A senha deve conter pelo menos 1 caracter maiúsculo"
+                }
+            }
+            else if(!pass.match("[0-9]"))
+            {
+                return {
+                    success: false,
+                    nivelErro: 2,
+                    error: "A senha deve conter pelo menos numeral"
+                }
+            }
+            else if(!pass.match("[!@#$%&*()-_=+;?]"))
+            {
+                return {
+                    success: false,
+                    nivelErro: 2,
+                    error: "A senha deve conter pelo menos caracter especial"
                 }
             }
             else
