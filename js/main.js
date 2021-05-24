@@ -8,10 +8,11 @@ const vm_main = new Vue({
         resultHash:"",
         newPass:"",
         newHash:"",
-        aba:1,
+        aba:0,
         errors:{
             descriptografar:{
-
+                passMaster:"",
+                hash:""
             },
             criptografar:{
                 pass:"",
@@ -28,9 +29,17 @@ const vm_main = new Vue({
             
             return hash.toString();
         },
-        decrypt(){
-            let dec = CryptoJS.AES.decrypt(this.hash,this.key);
-            this.resultHash = dec.toString(CryptoJS.enc.Utf8);
+        decrypt(hash,key){
+            try
+            {
+                let dec = CryptoJS.AES.decrypt(hash,key);
+                return dec.toString(CryptoJS.enc.Utf8);
+
+            }
+            catch
+            {
+                return "";
+            }
         },
         buttonGeneratePass()
         {
@@ -138,6 +147,33 @@ const vm_main = new Vue({
             {
                 this.errors.criptografar.passMaster = validacaoMaster.error;
                 this.errors.criptografar.pass = validacaoSenha.error;
+            }
+        },
+        buttonDecrypt()
+        {
+            let validacaoMaster = this.verifyPass(this.key);
+            if(validacaoMaster.success && this.hash.trim() != "")
+            {
+                this.errors.descriptografar.passMaster = "";
+                this.errors.descriptografar.hash = "";
+                let result = this.decrypt(this.hash,this.key);
+                if(result != "")
+                {
+                    this.resultHash = result;
+                }
+                else
+                {
+                    this.errors.descriptografar.passMaster = "Hash ou senha mestre incorreto";
+                    this.resultHash = "";
+                }
+            }
+            else
+            {
+                this.errors.descriptografar.passMaster = validacaoMaster.error;
+                if(this.hash.trim() == "")
+                {
+                    this.errors.descriptografar.hash = "Hash não pode ser nulo";
+                }
             }
         },
         getRandom(string)

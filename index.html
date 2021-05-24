@@ -31,9 +31,11 @@
             <div class="content_inputs">
                 <label class="text_title">Hash</label>
                 <input class="text_input" type="text" v-model="hash">
+                <p v-if="errors.descriptografar.hash != ''" class="content_results_error text_result">{{errors.descriptografar.hash}}</p>
                 <label class="text_title">Senha Mestre</label>
                 <input class="text_input" type="password" v-model="key">
-                <button class="main_button" @click="decrypt()">Descriptografar</button>
+                <p v-if="errors.descriptografar.passMaster != ''" class="content_results_error text_result">{{errors.descriptografar.passMaster}}</p>
+                <button class="main_button" @click="buttonDecrypt()">Descriptografar</button>
             </div>
             <div class="content_results">
                 <p class="content_results_label text_main">Senha:</p>
