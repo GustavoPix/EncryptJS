@@ -44,8 +44,10 @@
             <div class="content_inputs">
                 <label class="text_title">Senha</label>
                 <input class="text_input" type="password" v-model="pass">
+                <p v-if="errors.criptografar.pass != ''" class="content_results_error text_result">{{errors.criptografar.pass}}</p>
                 <label class="text_title">Senha Mestre</label>
                 <input class="text_input" type="password" v-model="key">
+                <p v-if="errors.criptografar.passMaster != ''" class="content_results_error text_result">{{errors.criptografar.passMaster}}</p>
                 <button class="main_button" @click="buttonEncrypt()">Criptografar</button>
             </div>
             <div class="content_results">

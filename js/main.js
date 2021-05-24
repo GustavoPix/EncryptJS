@@ -8,13 +8,14 @@ const vm_main = new Vue({
         resultHash:"",
         newPass:"",
         newHash:"",
-        aba:2,
+        aba:1,
         errors:{
             descriptografar:{
 
             },
             criptografar:{
-
+                pass:"",
+                passMaster:""
             },
             gerador:{
                 passMaster:""
@@ -125,7 +126,19 @@ const vm_main = new Vue({
         },
         buttonEncrypt()
         {
-            this.resultPass = this.encrypt(this.pass,this.key);
+            let validacaoMaster = this.verifyPass(this.key);
+            let validacaoSenha = this.verifyPass(this.pass);
+            if(validacaoMaster.success && validacaoSenha.success)
+            {
+                this.errors.criptografar.passMaster = "";
+                this.errors.criptografar.pass = "";
+                this.resultPass = this.encrypt(this.pass,this.key);
+            }
+            else
+            {
+                this.errors.criptografar.passMaster = validacaoMaster.error;
+                this.errors.criptografar.pass = validacaoSenha.error;
+            }
         },
         getRandom(string)
         {
